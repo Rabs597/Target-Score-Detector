@@ -26,7 +26,7 @@ class VideoAnalyzer:
         self.inner_diam = diamPx
         self.model = model
         self.frame_h, self.frame_w, _ = frameSize
-        self.sift = cv2.xfeatures2d.SIFT_create()
+        self.sift = cv2.SIFT_create()
 
         # calculate anchor points and model features
         self.anchor_points, self.pad_model = geo2D.zero_pad_as(model, frameSize)
@@ -143,7 +143,7 @@ class VideoAnalyzer:
                 grouping_diameter = grouper.measure_grouping_diameter(grouping_contour) if has_group else 0
                     
                 # write meta data on frame
-                sketcher.draw_meta_data_block(frame)
+                sketcher.draw_data_block(frame)
                 verified_scores = [h.score for h in verified_hits]
                 arrows_amount = len(verified_scores)
                 sketcher.type_arrows_amount(frame, arrows_amount, (0x0,0x0,0xff))
